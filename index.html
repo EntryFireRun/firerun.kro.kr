@@ -11,14 +11,14 @@
             text-align: center;
         }
 
-        img,
-        audio {
+        img {
             display: block;
             margin: 0 auto;
         }
 
         audio {
-            width: 100%;
+            width: 100vw;
+            margin-left: -10px;
         }
 
         img {
@@ -31,6 +31,10 @@
             background: linear-gradient(to left, red, blue);
             margin: 0 auto;
         }
+
+        audio::-webkit-media-controls-enclosure {
+            border-radius: 0;
+        }
     </style>
 </head>
 
@@ -42,6 +46,7 @@
     <audio controls>
         <source src="./song.mp3">
     </audio>
+    </div>
     <script>
         document.querySelector('audio').play()
     </script>
