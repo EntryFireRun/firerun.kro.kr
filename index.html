@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        h1,
+        p {
+            text-align: center;
+        }
+
+        img,
+        audio {
+            display: block;
+            margin: 0 auto;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        img {
+            width: 50vw;
+        }
+
+        div {
+            height: 5px;
+            width: 95vw;
+            background: linear-gradient(to left, red, blue);
+            margin: 0 auto;
+        }
+    </style>
 </head>
+
 <body>
+    <h1>호국보훈의 달</h1>
+    <div></div>
+    <img src="./flag.jpg">
+    <p>🇰🇷</p>
+    <audio controls>
+        <source src="./song.mp3">
+    </audio>
     <script>
-        location.href = "https://youtu.be/dQw4w9WgXcQ"
+        document.querySelector('audio').play()
     </script>
 </body>
+
 </html>
