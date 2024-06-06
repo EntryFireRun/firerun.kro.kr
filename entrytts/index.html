@@ -90,7 +90,7 @@
     <script>
         function gen() {
             !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리터 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
-            document.querySelector('#url').value = `https://playentry.org/api/expansionBlock/tts/read.mp3?text=${encodeURI(document.querySelector('#text').value)}&speed=${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&pitch=${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&speaker=${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`.replace('#', "%23").replace('&', "%26")
+            document.querySelector('#url').value = `https://playentry.org/api/expansionBlock/tts/read.mp3?text=${encodeURI(document.querySelector('#text').value.replace('#', "%23").replace('&', "%26"))}&speed=${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&pitch=${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&speaker=${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`
             try { document.querySelector('audio').remove() } catch { }
             let song = document.createElement('audio')
             let songurl = document.createElement('source')
@@ -103,7 +103,7 @@
             document.querySelector('audio').appendChild(songurl)
         }
         function copyurl(url) {
-            navigator.clipboard.writeText(url)
+            // navigator.clipboard.writeText(url)
             document.querySelector('#copyalert').style.display = "inline"
             document.querySelector('#url').style.display = "none"
             setTimeout(() => {
@@ -113,7 +113,7 @@
         }
         function copyshare() {
             navigator.clipboard.writeText(`https://firerun.kro.kr/entrytts/?${encodeURI(document.querySelector('#text').value).replace('#', '%23').replace('&', '%26')}&${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`)
-            alert('해당 기능은 실험 중인 기능입니다,\n이상한거 입력하면 제대로 안 불러와지니 주의해주세요')
+            alert('해당 기능은 실험 중인 기능입니다, 이상한거 입력하면 제대로 안 불러와지니 주의해주세요')
         }
         function otherinput(par) {
             document.querySelectorAll('input[value="other"]')[par].click()
