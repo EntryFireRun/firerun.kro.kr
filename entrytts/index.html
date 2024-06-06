@@ -110,13 +110,13 @@
         window.onload = () => {
             if (location.href.indexOf('?') != -1) {
                 urlsplit = location.href.split('?')[1].split('&')
-                if (/-[0-5]/.test(urlsplit[1]) || /[0-5]/.test(urlsplit[1])) {
+                if (/^-?[0-5]$/.test(urlsplit[1])) {
                     document.querySelector(`input[value="${urlsplit[1]}"]`).click()
                 } else {
                     document.querySelectorAll(`input[value='other']`)[2].click()
                     document.querySelector(`#speed`).value = decodeURI(urlsplit[1])
                 }
-                if (/-[0-5]/.test(urlsplit[2]) || /[0-5]/.test(urlsplit[2])) {
+                if (/^-?[0-5]$/.test(urlsplit[2])) {
                     document.querySelector(`input[id="${urlsplit[2]}"]`).click()
                 } else {
                     document.querySelectorAll(`input[value='other']`)[0].click()
