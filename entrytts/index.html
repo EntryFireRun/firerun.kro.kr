@@ -94,7 +94,7 @@
             document.querySelector('audio').appendChild(songurl)
         }
         function copyurl(url) {
-            // navigator.clipboard.writeText(url)
+            navigator.clipboard.writeText(url)
             document.querySelector('#copyalert').style.display = "inline"
             document.querySelector('#url').style.display = "none"
             setTimeout(() => {
