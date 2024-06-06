@@ -56,17 +56,17 @@
     </fieldset>
     <fieldset>
         <legend>음높이</legend>
-        <input type="radio" name="pitch" value="-5">매우 매우 높게<br>
-        <input type="radio" name="pitch" value="-4">매우 높게<br>
-        <input type="radio" name="pitch" value="-3">높게<br>
-        <input type="radio" name="pitch" value="-2">조금 높게<br>
-        <input type="radio" name="pitch" value="-1">매우 조금 높게<br>
-        <input type="radio" name="pitch" value="0" checked>보통<br>
-        <input type="radio" name="pitch" value="1">매우 조금 낮게<br>
-        <input type="radio" name="pitch" value="2">조금 낮게<br>
-        <input type="radio" name="pitch" value="3">낮게<br>
-        <input type="radio" name="pitch" value="4">매우 낮게<br>
-        <input type="radio" name="pitch" value="5">매우 매우 낮게<br>
+        <input type="radio" name="pitch" id="-5" value="-5">매우 매우 높게<br>
+        <input type="radio" name="pitch" id="-4" value="-4">매우 높게<br>
+        <input type="radio" name="pitch" id="-3" value="-3">높게<br>
+        <input type="radio" name="pitch" id="-2" value="-2">조금 높게<br>
+        <input type="radio" name="pitch" id="-1" value="-1">매우 조금 높게<br>
+        <input type="radio" name="pitch" id="0" value="0" checked>보통<br>
+        <input type="radio" name="pitch" id="-1" value="1">매우 조금 낮게<br>
+        <input type="radio" name="pitch" id="-2" value="2">조금 낮게<br>
+        <input type="radio" name="pitch" id="-3" value="3">낮게<br>
+        <input type="radio" name="pitch" id="-4" value="4">매우 낮게<br>
+        <input type="radio" name="pitch" id="-5" value="5">매우 매우 낮게<br>
         <input type="radio" name="pitch" value="other"><input type="text" id="pitch" placeholder="기타">
         <br>
     </fieldset>
@@ -78,10 +78,11 @@
     <input type="button" value="만들기" style="margin-top: 10px;" onclick="gen()">
     <input type="text" id="copyalert" style="width: 80%; display:none;" readonly value='복사되었습니다'>
     <input type="text" id="url" style="width: 80%;" readonly onclick="copyurl(this.value)">
+    <input type="button" value="결과 복사" onclick="copyshare()">
     <script>
         function gen() {
             !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리터 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
-            document.querySelector('#url').value = `https://playentry.org/api/expansionBlock/tts/read.mp3?text=${encodeURI(document.querySelector('#text').value)}&speed=${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&pitch=${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&speaker=${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`
+            document.querySelector('#url').value = `https://playentry.org/api/expansionBlock/tts/read.mp3?text=${encodeURI(document.querySelector('#text').value)}&speed=${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&pitch=${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&speaker=${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`.replace('#', "%23").replace('&', "%26")
             try { document.querySelector('audio').remove() } catch { }
             let song = document.createElement('audio')
             let songurl = document.createElement('source')
@@ -94,13 +95,37 @@
             document.querySelector('audio').appendChild(songurl)
         }
         function copyurl(url) {
-            navigator.clipboard.writeText(url)
+            // navigator.clipboard.writeText(url)
             document.querySelector('#copyalert').style.display = "inline"
             document.querySelector('#url').style.display = "none"
             setTimeout(() => {
                 document.querySelector('#copyalert').style.display = "none"
                 document.querySelector('#url').style.display = "inline"
             }, 1000)
+        }
+        function copyshare() {
+            navigator.clipboard.writeText(`https://firerun.kro.kr/entrytts/?${encodeURI(document.querySelector('#text').value).replace('#', '%23').replace('&', '%26')}&${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`)
+        }
+        window.onload = () => {
+            if (location.href.indexOf('?') != -1) {
+                urlsplit = location.href.split('?')[1].split('&')
+                if (/[-?][0-5]/.test(urlsplit[1])) {
+                    document.querySelector(`input[value="${urlsplit[1]}"]`).click()
+                } else {
+                    document.querySelector(`#speed`).value = decodeURI(urlsplit[1])
+                }
+                if (/[-?][0-5]/.test(urlsplit[2])) {
+                    document.querySelector(`input[id="${urlsplit[2]}"]`).click()
+                } else {
+                    document.querySelector(`#pitch`).value = decodeURI(urlsplit[2])
+                }
+                if (urlsplit[3] == "kyuri" || urlsplit[3] == "jinho" || urlsplit[3] == "hana" || urlsplit[3] == "dinna" || urlsplit[3] == "brown" || urlsplit[3] == "minions" || urlsplit[3] == "sally" || urlsplit[3] == "nsabina" || urlsplit[3] == "nmammon" || urlsplit[3] == "nmeow" || urlsplit[3] == "nwoof") {
+                    document.querySelector(`input[value="${urlsplit[3]}"]`).click()
+                } else {
+                    document.querySelector(`#voice`).value = decodeURI(urlsplit[3])
+                }
+                document.querySelector(`#text`).value = decodeURI(urlsplit[0])
+            }
         }
     </script>
 </body>
