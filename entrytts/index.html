@@ -109,19 +109,22 @@
         window.onload = () => {
             if (location.href.indexOf('?') != -1) {
                 urlsplit = location.href.split('?')[1].split('&')
-                if (/[-?][0-5]/.test(urlsplit[1])) {
+                if (/-[0-5]/.test(urlsplit[1]) || /[0-5]/.test(urlsplit[1])) {
                     document.querySelector(`input[value="${urlsplit[1]}"]`).click()
                 } else {
+                    document.querySelectorAll(`input[value='other']`)[2].click()
                     document.querySelector(`#speed`).value = decodeURI(urlsplit[1])
                 }
-                if (/[-?][0-5]/.test(urlsplit[2])) {
+                if (/-[0-5]/.test(urlsplit[2]) || /[0-5]/.test(urlsplit[2])) {
                     document.querySelector(`input[id="${urlsplit[2]}"]`).click()
                 } else {
+                    document.querySelectorAll(`input[value='other']`)[0].click()
                     document.querySelector(`#pitch`).value = decodeURI(urlsplit[2])
                 }
                 if (urlsplit[3] == "kyuri" || urlsplit[3] == "jinho" || urlsplit[3] == "hana" || urlsplit[3] == "dinna" || urlsplit[3] == "brown" || urlsplit[3] == "minions" || urlsplit[3] == "sally" || urlsplit[3] == "nsabina" || urlsplit[3] == "nmammon" || urlsplit[3] == "nmeow" || urlsplit[3] == "nwoof") {
                     document.querySelector(`input[value="${urlsplit[3]}"]`).click()
                 } else {
+                    document.querySelectorAll(`input[value='other']`)[1].click()
                     document.querySelector(`#voice`).value = decodeURI(urlsplit[3])
                 }
                 document.querySelector(`#text`).value = decodeURI(urlsplit[0])
