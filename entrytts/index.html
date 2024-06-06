@@ -78,6 +78,7 @@
     <input type="button" value="만들기" style="margin-top: 10px;" onclick="gen()">
     <input type="text" id="copyalert" style="width: 80%; display:none;" readonly value='복사되었습니다'>
     <input type="text" id="url" style="width: 80%;" readonly onclick="copyurl(this.value)">
+    <input type="button" value="다운로드" style="margin-top: 10px;" onclick="downloadfile()">
     <script>
         function gen() {
             !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리터 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
@@ -101,6 +102,16 @@
                 document.querySelector('#copyalert').style.display = "none"
                 document.querySelector('#url').style.display = "inline"
             }, 1000)
+        }
+        function downloadfile() {
+            if (document.querySelector('#url').value) {
+                file = document.createElement('a');
+                file.download = "true"
+                file.href = document.querySelector('#url').value
+                document.body.appendChild(file)
+                file.click()
+                file.remove()
+            }
         }
     </script>
 </body>
