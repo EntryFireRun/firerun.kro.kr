@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엔트리 TTS 만들기</title>
+    <style>
+        fieldset {
+            border: 1px black solid;
+        }
+
+        legend {
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>속도</legend>
+        <input type="radio" name="speed" value="-5">매우 매우 빠르게<br>
+        <input type="radio" name="speed" value="-4">매우 빠르게<br>
+        <input type="radio" name="speed" value="-3">빠르게<br>
+        <input type="radio" name="speed" value="-2">조금 빠르게<br>
+        <input type="radio" name="speed" value="-1">매우 조금 빠르게<br>
+        <input type="radio" name="speed" value="0" checked>보통<br>
+        <input type="radio" name="speed" value="1">매우 조금 느리게<br>
+        <input type="radio" name="speed" value="2">조금 느리게<br>
+        <input type="radio" name="speed" value="3">느리게<br>
+        <input type="radio" name="speed" value="4">매우 느리게<br>
+        <input type="radio" name="speed" value="5">매우 매우 느리게<br>
+        <input type="radio" name="speed" value="other"><input type="text" id="speed" placeholder="기타">
+        <br>
+    </fieldset>
+    <fieldset>
+        <legend>목소리</legend>
+        <input type="radio" name="voice" value="kyuri" checked>여성<br>
+        <input type="radio" name="voice" value="jinho">남성<br>
+        <input type="radio" name="voice" value="hana">친절한<br>
+        <input type="radio" name="voice" value="dinna">감미로운<br>
+        <input type="radio" name="voice" value="brown">울리는<br>
+        <input type="radio" name="voice" value="minions">장난스러운<br>
+        <input type="radio" name="voice" value="sally">앙증맞은<br>
+        <input type="radio" name="voice" value="nsabina">마녀<br>
+        <input type="radio" name="voice" value="nmammon">악마<br>
+        <input type="radio" name="voice" value="nmeow">야옹이<br>
+        <input type="radio" name="voice" value="nwoof">멍멍이<br>
+        <input type="radio" name="voice" value="other"><input type="text" id="voice" placeholder="기타">
+    </fieldset>
+    <fieldset>
+        <legend>음높이</legend>
+        <input type="radio" name="pitch" value="-5">매우 매우 높게<br>
+        <input type="radio" name="pitch" value="-4">매우 높게<br>
+        <input type="radio" name="pitch" value="-3">높게<br>
+        <input type="radio" name="pitch" value="-2">조금 높게<br>
+        <input type="radio" name="pitch" value="-1">매우 조금 높게<br>
+        <input type="radio" name="pitch" value="0" checked>보통<br>
+        <input type="radio" name="pitch" value="1">매우 조금 낮게<br>
+        <input type="radio" name="pitch" value="2">조금 낮게<br>
+        <input type="radio" name="pitch" value="3">낮게<br>
+        <input type="radio" name="pitch" value="4">매우 낮게<br>
+        <input type="radio" name="pitch" value="5">매우 매우 낮게<br>
+        <input type="radio" name="pitch" value="other"><input type="text" id="pitch" placeholder="기타">
+        <br>
+    </fieldset>
+    <fieldset>
+        <legend>텍스트</legend>
+        <input type="text" id="text" placeholder="Hello World" style="width: 30%;">
+        <br>
+    </fieldset>
+    <input type="button" value="만들기" style="margin-top: 10px;" onclick="gen()">
+    <input type="text" id="url" style="width: 80%;" readonly onclick="navigator.clipboard.writeText(this.value)">
+    <script>
+        function gen() {
+            !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리터 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
+            document.querySelector('#url').value = `https://playentry.org/api/expansionBlock/tts/read.mp3?text=${encodeURI(document.querySelector('#text').value)}&speed=${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&pitch=${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&speaker=${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`
+        }
+    </script>
+</body>
+
+</html>
