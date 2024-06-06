@@ -13,10 +13,16 @@
         legend {
             font-size: 25px;
         }
+
+        #url {
+            outline: 0px;
+        }
     </style>
 </head>
 
 <body>
+    <h1><span style="text-decoration: line-through; font-size: 15px;">디자인 따위는 개나 줘버린</span>엔트리 TTS 만드는 사이트</h1>
+    <hr>
     <fieldset>
         <legend>속도</legend>
         <input type="radio" name="speed" value="-5">매우 매우 빠르게<br>
@@ -70,9 +76,8 @@
         <br>
     </fieldset>
     <input type="button" value="만들기" style="margin-top: 10px;" onclick="gen()">
+    <input type="text" id="copyalert" style="width: 80%; display:none;" readonly value='복사되었습니다'>
     <input type="text" id="url" style="width: 80%;" readonly onclick="copyurl(this.value)">
-    <input type="text" id="copyalert" style="width: 80%; display:none; border: 2px solid; border-radius: 5px;" readonly
-        value='복사되었습니다'>
     <script>
         function gen() {
             !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리터 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
