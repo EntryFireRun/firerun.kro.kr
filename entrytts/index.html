@@ -164,6 +164,7 @@
                 }
                 document.querySelector(`#text`).value = decodeURI(urlsplit[0]).replaceAll('%23', "#").replaceAll('%26', "&")
                 gen()
+                document.querySelector('audio').play()
             }
         }
     </script>
