@@ -16,7 +16,8 @@
             font-size: 25px;
         }
 
-        #url {
+        #url,
+        #copyalert {
             outline: 0px;
         }
 
@@ -80,7 +81,7 @@
     </fieldset>
     <fieldset>
         <legend>텍스트</legend>
-        <input type="text" id="text" placeholder="Hello World" style="width: 30%;">
+        <input type="text" id="text" placeholder="Hello World" style="width: 30%;" onkeydown="gen()">
         <br>
     </fieldset>
     <input type="button" value="만들기" style="margin-top: 10px;" onclick="gen()">
@@ -113,7 +114,7 @@
         }
         function copyshare() {
             navigator.clipboard.writeText(`https://firerun.kro.kr/entrytts/?${encodeURI(document.querySelector('#text').value).replaceAll('#', '%23').replaceAll('&', '%26')}&${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value.replaceAll('&', '%26') : document.querySelector('input[name="speed"]:checked').value}&${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value.replaceAll('&', '%26') : document.querySelector('input[name="pitch"]:checked').value}&${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value.replaceAll('&', '%26') : document.querySelector('input[name="voice"]:checked').value}`)
-            alert('해당 기능은 실험 중인 기능입니다, 이상한거 입력하면 제대로 안 불러와지니 주의해주세요\n(허용되지 않는 문자 : %26(&으로 바뀜))')
+            alert('해당 기능은 실험 중인 기능입니다\n이상한거 입력하면 제대로 안 불러와지니 주의해주세요\n(허용되지 않는 문자 : %26(&으로 바뀜))')
         }
         function otherinput(par) {
             document.querySelectorAll('input[value="other"]')[par].click()
