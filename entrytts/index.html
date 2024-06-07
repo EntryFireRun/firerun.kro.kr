@@ -121,7 +121,7 @@
             automode == 1 ? document.querySelector('audio').play() : null
         }
         function copyurl(url) {
-            navigator.clipboard.writeText(url)
+            url = "" ? navigator.clipboard.writeText("아무 것도 없는 값을 복사하시려는 이유가 뭔가요? 신기하네요") : navigator.clipboard.writeText(url)
             document.querySelector('#copyalert').style.display = "inline"
             document.querySelector('#url').style.display = "none"
             setTimeout(() => {
