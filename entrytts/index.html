@@ -81,16 +81,32 @@
     </fieldset>
     <fieldset>
         <legend>텍스트</legend>
-        <input type="text" id="text" placeholder="Hello World" style="width: 30%;" onkeydown="gen()">
+        <input type="text" id="text" placeholder="Hello World" style="width: 30%;"
+            onkeyup="automode == 0 ? (event.keyCode == 13 ? gen() : null) : gen()">
         <br>
     </fieldset>
     <input type="button" value="만들기" style="margin-top: 10px;" onclick="gen()">
+    <input type="button" value="오토 모드 (꺼짐)" style="margin-top: 10px;" onclick="automodefun(this)">
     <input type="text" id="copyalert" style="width: 80%; display:none;" readonly value='복사되었습니다'>
     <input type="text" id="url" style="width: 80%;" readonly onclick="copyurl(this.value)">
     <input type="button" value="결과 복사" onclick="copyshare()">
     <script>
+        let automode = 0
+        function automodefun(my) {
+            if (automode == 0) {
+                my.value = "오토 모드 (켜짐)"
+                automode = 1
+                document.querySelector('#text').placeholder = "오토 모드에서는 텍스트를 입력하기만 해도 만들어집니다"
+                document.querySelector('#text').value = ""
+            } else {
+                my.value = "오토 모드 (꺼짐)"
+                automode = 0
+                document.querySelector('#text').placeholder = "Hello World"
+                document.querySelector('#text').value = ""
+            }
+        }
         function gen() {
-            !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리티어 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
+            !document.querySelector('#text').value ? document.querySelector('#text').value = document.querySelector('#text').placeholder : null
             document.querySelector('#url').value = `https://playentry.org/api/expansionBlock/tts/read.mp3?text=${encodeURI(document.querySelector('#text').value.replaceAll('#', "%23").replaceAll('&', "%26"))}&speed=${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&pitch=${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&speaker=${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`
             try { document.querySelector('audio').remove() } catch { }
             let song = document.createElement('audio')
@@ -102,6 +118,7 @@
             songurl.src = document.querySelector('#url').value
             document.body.appendChild(song)
             document.querySelector('audio').appendChild(songurl)
+            automode == 1 ? document.querySelector('audio').play() : null
         }
         function copyurl(url) {
             navigator.clipboard.writeText(url)
