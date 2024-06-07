@@ -90,7 +90,7 @@
     <input type="button" value="결과 복사" onclick="copyshare()">
     <script>
         function gen() {
-            !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리터 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
+            !document.querySelector('#text').value ? document.querySelector('#text').value = "Hello World" : '프리티어 뭐하냐 파이썬도 아니고 코드 정리 이따구로 하네;'
             document.querySelector('#url').value = `https://playentry.org/api/expansionBlock/tts/read.mp3?text=${encodeURI(document.querySelector('#text').value.replaceAll('#', "%23").replaceAll('&', "%26"))}&speed=${document.querySelector('input[name="speed"]:checked').value == "other" ? document.querySelector('#speed').value : document.querySelector('input[name="speed"]:checked').value}&pitch=${document.querySelector('input[name="pitch"]:checked').value == "other" ? document.querySelector('#pitch').value : document.querySelector('input[name="pitch"]:checked').value}&speaker=${document.querySelector('input[name="voice"]:checked').value == "other" ? document.querySelector('#voice').value : document.querySelector('input[name="voice"]:checked').value}`
             try { document.querySelector('audio').remove() } catch { }
             let song = document.createElement('audio')
