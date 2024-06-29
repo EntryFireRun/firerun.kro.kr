@@ -8,15 +8,31 @@
 </head>
 
 <body>
-    <h1>주소 창 뒤에 base64(한국어 미지원)를 붙여넣어, 원하는 웹 사이트를 띄워보세요</h1>
+    <h1>원하는 웹 사이트를 띄워보세요</h1>
     <p>예 : aGloaQ==</p>
+    <textarea style="width: 1000px; height: 500px;">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title>Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    
+&lt;/body&gt;
+&lt;/html&gt;</textarea><input type="button" value="만들기 (복사)" style="margin: 0 0 0 10px" onclick="create()">
+
     <script>
         window.onload = () => {
             if (!!location.search == true) {
-                document.write(atob(location.search.slice(1)))
+                document.write(decodeURI(atob(location.search.slice(1))))
             } else {
                 document.querySelector('p').innerText = `예 : ${location.origin + location.pathname}?aGloaQ==`
             }
+        }
+        function create() {
+            console.log(location.origin + location.pathname + "?" + btoa(encodeURI(document.querySelector('textarea').value)))
+            navigator.clipboard.writeText(location.origin + location.pathname + "?" + btoa(encodeURI(document.querySelector('textarea').value)))
         }
     </script>
 </body>
