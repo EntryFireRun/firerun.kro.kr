@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe
+            src="https://playentry.org/community/notice/list/1?sort=created&term=all"
+            frameborder="0"
+            style="width: 100vw; height: 100vh"
+        ></iframe>
+        <script>
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        </script>
+    </body>
+</html>
