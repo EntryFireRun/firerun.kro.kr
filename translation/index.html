@@ -121,7 +121,7 @@
             type="text"
             value="https://etranslation.vercel.app/?text=&source=ko&target=en"
         />
-        <pre>{"message":"no text"}</pre>
+        <pre>message : no text</pre>
         <input
             type="button"
             value="요청 받기"
@@ -166,8 +166,11 @@
                 fetch(document.querySelector("input").value)
                     .then((r) => r.json())
                     .then((d) => {
-                        document.querySelector("pre").innerText =
-                            JSON.stringify(d);
+                        let result = "";
+                        for (k in d) {
+                            result += k + " : " + d[k] + "\n";
+                        }
+                        document.querySelector("pre").innerText = result;
                         console.log("다음 요청을 받음");
                         console.log(d);
                     });
