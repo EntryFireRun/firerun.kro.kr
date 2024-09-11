@@ -123,13 +123,18 @@
             type="text"
             value="https://etranslation.vercel.app/?text=&source=ko&target=en"
         />
-        <pre>message : no text</pre>
+        <pre>
+message : no text
+
+
+{"message":"no text"}</pre
+        >
         <input
             type="button"
             value="요청 받기"
             style="
                 margin-left: 50vw;
-                transform: translateX(-50%) translateY(-45px);
+                transform: translateX(-80%) translateY(-45px);
                 cursor: pointer;
             "
             onclick="getData()"
@@ -173,7 +178,7 @@
                             result += k + " : " + d[k] + "\n";
                         }
                         document.querySelector("pre").innerText =
-                            result + "\n\n" + d;
+                            result + "\n\n" + JSON.stringify(d);
                         console.log("다음 요청을 받음");
                         console.log(d);
                     });
