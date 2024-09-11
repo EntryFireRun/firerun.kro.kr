@@ -70,6 +70,7 @@
                 height: 10vh;
                 border-radius: 5px;
                 padding: 5px;
+                white-space: pre-wrap;
             }
         </style>
     </head>
@@ -131,7 +132,13 @@
             "
             onclick="getData()"
         />
+        <p style="color: #fff; margin: 0">
+            Console 탭에서 더 많은 정보를 확인하실 수 있습니다!
+        </p>
         <script>
+            console.log(
+                "입력된 값이 변경 됨 : https://etranslation.vercel.app/?text=&source=ko&target=en"
+            );
             function test() {
                 document.querySelector(
                     "input"
@@ -146,15 +153,24 @@
                         document.querySelector("#end").selectedIndex
                     ].value
                 }`;
+                console.log(
+                    "입력된 값이 변경 됨 : " +
+                        document.querySelector("input").value
+                );
             }
             function getData() {
+                console.log(
+                    "다음으로 요청 보내짐 : " +
+                        document.querySelector("input").value
+                );
                 fetch(document.querySelector("input").value)
                     .then((r) => r.json())
-                    .then(
-                        (d) =>
-                            (document.querySelector("pre").innerText =
-                                JSON.stringify(d))
-                    );
+                    .then((d) => {
+                        document.querySelector("pre").innerText =
+                            JSON.stringify(d);
+                        console.log("다음 요청을 받음");
+                        console.log(d);
+                    });
             }
             document.querySelector("textarea").addEventListener("input", test);
             document.querySelector("#start").addEventListener("change", test);
