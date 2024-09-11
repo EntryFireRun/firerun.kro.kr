@@ -71,6 +71,8 @@
                 border-radius: 5px;
                 padding: 5px;
                 white-space: pre-wrap;
+                word-break: break-all;
+                overflow-y: scroll;
             }
         </style>
     </head>
@@ -170,7 +172,8 @@
                         for (k in d) {
                             result += k + " : " + d[k] + "\n";
                         }
-                        document.querySelector("pre").innerText = result;
+                        document.querySelector("pre").innerText =
+                            result + "\n\n" + d;
                         console.log("다음 요청을 받음");
                         console.log(d);
                     });
