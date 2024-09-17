@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>정적 페이지에서 엔트리 이야기</title>
+        <style>
+            .text {
+                background-color: #333;
+                color: #fff;
+                margin: 25px;
+                padding: 25px;
+                border-radius: 10px;
+            }
+            .user {
+                width: 150px;
+                object-fit: cover;
+                height: 150px;
+                border-radius: 50%;
+                background-color: #fff;
+            }
+            .goToEntry {
+                color: #8cf;
+            }
+            .info {
+                display: flex;
+                align-items: center;
+            }
+            .realInfo {
+                margin-left: 15px;
+            }
+            .content {
+                margin-top: 15px;
+                border: 1px solid #555;
+                padding: 10px;
+                border-radius: 15px;
+            }
+            .nickname {
+                font-size: 1.3em;
+                font-weight: 600;
+            }
+            h1 {
+                margin-left: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>엔트리 이야기</h1>
+        <div id="text1" class="text"><progress></progress></div>
+        <div id="text2" class="text"><progress></progress></div>
+        <div id="text3" class="text"><progress></progress></div>
+        <div id="text4" class="text"><progress></progress></div>
+        <div id="text5" class="text"><progress></progress></div>
+        <div id="text6" class="text"><progress></progress></div>
+        <div id="text7" class="text"><progress></progress></div>
+        <div id="text8" class="text"><progress></progress></div>
+        <div id="text9" class="text"><progress></progress></div>
+        <div id="text10" class="text"><progress></progress></div>
+        <script>
+            fetch("https://getentrystory.vercel.app/")
+                .then((res) => res.json())
+                .then((req) => {
+                    let number = 1;
+                    req.forEach((text) => {
+                        document.querySelector(
+                            "#text" + number
+                        ).innerHTML = `<div class="info"><img class="user" src="https://playentry.org/uploads/${text.user.profileImage.filename.slice(
+                            0,
+                            2
+                        )}/${text.user.profileImage.filename.slice(2, 4)}/${
+                            text.user.profileImage.filename
+                        }.${text.user.profileImage.imageType}"></img>
+                        <div class="realInfo">
+                            <div class="nickname">${text.user.nickname}</div>
+                            <div>댓글 : ${text.commentsLength}</div>
+                            <div>좋아요 : ${text.likesLength}</div>
+                            <div>${new Date(text.created).toLocaleString(
+                                "ko-kR"
+                            )}</div>
+                            <a class="goToEntry" href="https://playentry.org/community/entrystory/${
+                                text.id
+                            }">여기를 눌러서 글 바로가기</a>
+                            </div>
+                            </div>
+                            <div class="content">${text.content}</div>`;
+                        number++;
+                    });
+                });
+        </script>
+    </body>
+</html>
