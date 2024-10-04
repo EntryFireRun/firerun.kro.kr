@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>토클 예제</title>
+        <style>
+            body {
+                margin: 20px;
+            }
+            input[type="radio"] {
+                visibility: hidden;
+                width: 50px;
+                margin: 0;
+                cursor: pointer;
+            }
+            input[type="radio"]:not(:checked):hover::before {
+                background-color: lightcyan;
+                color: lightskyblue;
+            }
+            input[type="radio"]::before {
+                text-align: center;
+                transition: 0.2s ease-in all;
+                content: "꺼짐";
+                border: 2px solid rgba(0, 0, 0, 0.171);
+                padding: 10px;
+                visibility: visible;
+                display: block;
+                color: #fff;
+            }
+            input[type="radio"]:checked::before {
+                color: #000;
+            }
+            input[type="radio"]:nth-child(even) {
+                margin-left: -2px;
+            }
+            input[type="radio"]:checked:nth-child(even)::before {
+                background-color: aqua;
+            }
+            input[type="radio"]:checked:nth-child(odd)::before {
+                background-color: gray;
+            }
+            input[type="radio"]:nth-child(even)::before {
+                border-radius: 0 5px 5px 0;
+                content: "켜짐";
+            }
+            input[type="radio"]:checked:nth-child(even)::before {
+                border-left-color: darkturquoise;
+                transform: scale(1.05);
+            }
+            input[type="radio"]:nth-child(odd)::before {
+                border-radius: 5px 0 0 5px;
+            }
+            div {
+                font-size: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="radio" name="toggle1" checked />
+            <input type="radio" name="toggle1" />
+        </div>
+        <br />
+        <div>
+            <input type="radio" name="toggle2" checked />
+            <input type="radio" name="toggle2" />
+        </div>
+        <br />
+        <div>
+            <input type="radio" name="toggle3" checked />
+            <input type="radio" name="toggle3" />
+        </div>
+        <br />
+        <div>
+            <input type="radio" name="toggle4" checked />
+            <input type="radio" name="toggle4" />
+        </div>
+    </body>
+</html>
