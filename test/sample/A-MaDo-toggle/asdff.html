@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Config</title>
+        <style>
+            body {
+                width: 300px;
+                border: 1px solid #4d4256;
+                position: relative;
+                background-color: #141314;
+                color: #e6e1e3;
+                z-index: -2;
+                padding: 10px 20px;
+            }
+            summary {
+                pointer-events: all;
+                transition: all ease-in 0.1s;
+                background-color: #1c1b1d;
+                list-style-type: none;
+                border-radius: 24px;
+                padding: 24px;
+                cursor: pointer;
+                &:hover {
+                    background-color: #2e2c2e;
+                }
+            }
+            summary::after {
+                right: 48px;
+                content: "▼";
+                position: absolute;
+                transform: rotate(180deg) scaleY(40%) scaleX(70%)
+                    translateY(-40%);
+                width: 15px;
+                height: 15px;
+                font-size: 16px;
+            }
+            details[open] > summary {
+                background-color: #45455a;
+                &::after {
+                    transform: rotate(0deg) scaleY(40%) scaleX(70%)
+                        translateY(40%);
+                }
+                &:hover {
+                    background-color: #505063 !important;
+                }
+            }
+            h1 {
+                text-align: center;
+            }
+            details {
+                pointer-events: none;
+                & > div {
+                    pointer-events: all;
+                    transition: all ease-in 0.2s;
+                    background-color: #1c1b1d;
+                    border-radius: 0 0 24px 24px;
+                    z-index: -1;
+                    padding: 48px 24px 24px 24px;
+                    position: relative;
+                    margin-top: -48px;
+                }
+            }
+            img {
+                padding: 10px 100px;
+                height: 100px;
+            }
+            input[type="checkbox"] {
+                & {
+                    visibility: hidden;
+                    margin-left: 10px;
+                    width: 40px;
+                    height: 25px;
+                }
+                &::before {
+                    transition: all cubic-bezier(0.4, 0, 0, 1) 0.2s;
+                    cursor: pointer;
+                    content: "";
+                    display: block;
+                    visibility: visible;
+                    width: 40px;
+                    height: 25px;
+                    border-radius: 24px;
+                    background-color: #363339;
+                    outline: 2px solid #948f99;
+                }
+                &::after {
+                    cursor: pointer;
+                    visibility: visible;
+                    content: "";
+                    display: block;
+                    width: 18px;
+                    height: 18px;
+                    background-color: #948f99;
+                    border-radius: 18px;
+                    transition: all cubic-bezier(0.4, 0, 0, 1) 0.2s;
+                }
+                &:not(:checked)::after {
+                    color: #948f99;
+                    transform: translateY(-22px) translateX(3px);
+                }
+                &:checked::after {
+                    transform: translateY(-22px) translateX(20px);
+                    content: "✓";
+                    background-color: #fff;
+                    color: #4f378b;
+                    text-align: center;
+                }
+                &:checked::before {
+                    background-color: #4f378b;
+                    outline-color: #4f378b;
+                }
+                &:checked:hover::after {
+                    background-color: #c8b3fd;
+                }
+                &:not(:checked):hov::after {
+                    background-color: #49454e;
+                }
+            }
+            .settingMenu {
+                display: flex;
+                align-items: center;
+                padding: 24px 0;
+            }
+            p {
+                font-size: 10px;
+                color: #787579;
+                margin: unset;
+            }
+            input[type="range"] {
+                accent-color: #ccb6ff;
+                margin-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="./logo.png" />
+        <details open>
+            <summary>탭</summary>
+            <div>
+                <div class="settingMenu">버튼 <input type="checkbox" /></div>
+                <p>
+                    구글 머티리얼 따라해 보고 싶었는데 너무 어려워요 그래서
+                    야매로 대충 몇 몇 개 무시까고 구현
+                </p>
+                <div class="settingMenu">슬라이더 <input type="range" /></div>
+                <p>
+                    슬라이더는 바꾸는 게 드럽게 어려워서 그냥 기본 값 먹으시 길
+                </p>
+            </div>
+        </details>
+    </body>
+</html>
