@@ -3,9 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         <title>Config</title>
         <style>
+            * {
+                font-family: "Pretendard Variable", Pretendard, -apple-system,
+                    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue",
+                    "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+                    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+                    "Segoe UI Symbol", sans-serif;
+            }
             body {
                 width: 300px;
                 border: 1px solid #4d4256;
@@ -29,19 +35,19 @@
             }
             summary::after {
                 right: 48px;
-                content: "▼";
+                content: "";
                 position: absolute;
-                transform: rotate(180deg) scaleY(40%) scaleX(70%)
-                    translateY(-40%);
+                transform: rotate(180deg) scale(0.7) translateY(-6px);
+                clip-path: polygon(50% 50%, 100% 50%, 50% 100%, 0 50%);
                 width: 15px;
                 height: 15px;
                 font-size: 16px;
+                background-color: #e6e1e3;
             }
             details[open] > summary {
                 background-color: #45455a;
                 &::after {
-                    transform: rotate(0deg) scaleY(40%) scaleX(70%)
-                        translateY(40%);
+                    transform: rotate(0deg) scale(0.7) translateY(1px);
                 }
                 &:hover {
                     background-color: #505063 !important;
@@ -69,41 +75,44 @@
             }
             input[type="checkbox"] {
                 & {
-                    visibility: hidden;
+                    appearance: none;
                     margin-left: 10px;
                     width: 40px;
                     height: 25px;
                 }
                 &::before {
-                    transition: all cubic-bezier(0.4, 0, 0, 1) 0.2s;
+                    transition: background-color ease-in-out 0.2s,
+                        outline ease-in-out 0.3s;
                     cursor: pointer;
                     content: "";
                     display: block;
-                    visibility: visible;
                     width: 40px;
                     height: 25px;
                     border-radius: 24px;
                     background-color: #363339;
                     outline: 2px solid #948f99;
                 }
-                &::after {
+                &::after,
+                div:has(&) > div[class^="motionBlur"] {
                     cursor: pointer;
-                    visibility: visible;
                     content: "";
                     display: block;
                     width: 18px;
                     height: 18px;
                     background-color: #948f99;
                     border-radius: 18px;
-                    transition: all cubic-bezier(0.4, 0, 0, 1) 0.2s;
+                    transition: all cubic-bezier(0.4, 0, 0, 1.4) 0.2s;
                 }
-                &:not(:checked)::after {
+                &:not(:checked)::after,
+                div:has(&:not(:checked)) > div[class^="motionBlur"] {
                     color: #948f99;
-                    transform: translateY(-22px) translateX(3px);
+                    transform: translateY(-21.5px) translateX(3px);
                 }
-                &:checked::after {
-                    transform: translateY(-22px) translateX(20px);
-                    content: "✓";
+                &:checked::after,
+                div:has(&:checked) > div[class^="motionBlur"] {
+                    transform: translateY(-23.5px) translateX(16px);
+                    width: 22px;
+                    height: 22px;
                     background-color: #fff;
                     color: #4f378b;
                     text-align: center;
@@ -115,10 +124,91 @@
                 &:checked:hover::after {
                     background-color: #c8b3fd;
                 }
-                &:not(:checked):hov::after {
+                &:not(:checked):hover::after {
                     background-color: #49454e;
                 }
             }
+            .motionBlur1 {
+                transition-delay: 0.003s !important;
+            }
+            .motionBlur2 {
+                transition-delay: 0.006s !important;
+            }
+            .motionBlur3 {
+                transition-delay: 0.009s !important;
+            }
+            .motionBlur4 {
+                transition-delay: 0.012s !important;
+            }
+            .motionBlur5 {
+                transition-delay: 0.015s !important;
+            }
+            .motionBlur6 {
+                transition-delay: 0.018s !important;
+            }
+            .motionBlur7 {
+                transition-delay: 0.021s !important;
+            }
+            .motionBlur8 {
+                transition-delay: 0.024s !important;
+            }
+            .motionBlur9 {
+                transition-delay: 0.027s !important;
+            }
+            .motionBlur10 {
+                transition-delay: 0.03s !important;
+            }
+            .motionBlur11 {
+                transition-delay: 0.033s !important;
+            }
+            .motionBlur12 {
+                transition-delay: 0.036s !important;
+            }
+            .motionBlur13 {
+                transition-delay: 0.039s !important;
+            }
+            .motionBlur14 {
+                transition-delay: 0.042s !important;
+            }
+            .motionBlur15 {
+                transition-delay: 0.045s !important;
+            }
+            .motionBlur16 {
+                transition-delay: 0.048s !important;
+            }
+            .motionBlur17 {
+                transition-delay: 0.051s !important;
+            }
+            .motionBlur18 {
+                transition-delay: 0.054s !important;
+            }
+            .motionBlur19 {
+                transition-delay: 0.057s !important;
+            }
+            .motionBlur20 {
+                transition-delay: 0.06s !important;
+            }
+            .motionBlur21 {
+                transition-delay: 0.063s !important;
+            }
+            .motionBlur22 {
+                transition-delay: 0.066s !important;
+            }
+            .motionBlur23 {
+                transition-delay: 0.069s !important;
+            }
+            .motionBlur24 {
+                transition-delay: 0.072s !important;
+            }
+
+            div[class^="motionBlur"] {
+                position: absolute;
+                top: 100px;
+                left: 61.5px;
+                opacity: 0.05;
+                pointer-events: none;
+            }
+
             .settingMenu {
                 display: flex;
                 align-items: center;
@@ -130,8 +220,24 @@
                 margin: unset;
             }
             input[type="range"] {
-                accent-color: #ccb6ff;
-                margin-left: 10px;
+                appearance: unset;
+                accent-color: #fff;
+                height: 10px;
+                border-radius: 24px;
+                background-color: #454559;
+                margin-left: 8px;
+            }
+            span {
+                width: 2px;
+                height: 2px;
+                background-color: #ccbeff;
+                border-radius: 2px;
+            }
+            .afterRange {
+                transform: translateX(15px);
+            }
+            .beforeRange {
+                transform: translateX(-8px);
             }
         </style>
     </head>
@@ -140,14 +246,45 @@
         <details open>
             <summary>탭</summary>
             <div>
-                <div class="settingMenu">버튼 <input type="checkbox" /></div>
+                <div class="settingMenu">
+                    버튼
+                    <input type="checkbox" />
+                    <div class="motionBlur1"></div>
+                    <div class="motionBlur2"></div>
+                    <div class="motionBlur3"></div>
+                    <div class="motionBlur4"></div>
+                    <div class="motionBlur5"></div>
+                    <div class="motionBlur6"></div>
+                    <div class="motionBlur7"></div>
+                    <div class="motionBlur8"></div>
+                    <div class="motionBlur9"></div>
+                    <div class="motionBlur10"></div>
+                    <div class="motionBlur11"></div>
+                    <div class="motionBlur12"></div>
+                    <div class="motionBlur13"></div>
+                    <div class="motionBlur14"></div>
+                    <div class="motionBlur15"></div>
+                    <div class="motionBlur16"></div>
+                    <div class="motionBlur17"></div>
+                    <div class="motionBlur18"></div>
+                    <div class="motionBlur19"></div>
+                    <div class="motionBlur20"></div>
+                    <div class="motionBlur21"></div>
+                    <div class="motionBlur22"></div>
+                    <div class="motionBlur23"></div>
+                    <div class="motionBlur24"></div>
+                </div>
                 <p>
-                    구글 머티리얼 따라해 보고 싶었는데 너무 어려워요 그래서
-                    야매로 대충 몇 몇 개 무시까고 구현
+                    구글 머티리얼 따라해 보고 싶었는데 드럽게 어려움요... 야매로
+                    대충 몇 몇 개 무시까고 구현했으니 이거나 먹으세요
                 </p>
-                <div class="settingMenu">슬라이더 <input type="range" /></div>
+                <div class="settingMenu">
+                    슬라이더 <span class="afterRange"></span
+                    ><input type="range" /><span class="beforeRange"></span>
+                </div>
                 <p>
-                    슬라이더는 바꾸는 게 드럽게 어려워서 그냥 기본 값 먹으시길
+                    슬라이더는 바꾸는 게 드럽게 어려움요... 좀 머티리얼은 아니긴
+                    하지만 그냥 이거나 먹으세요
                 </p>
             </div>
         </details>
